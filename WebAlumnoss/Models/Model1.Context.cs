@@ -26,5 +26,6 @@ namespace WebAlumnoss.Models
         }
     
         public virtual DbSet<Alumnos> Alumnos { get; set; }
+        public virtual DbSet<Nacionalidades> Nacionalidades { get; set; }
     }
 }

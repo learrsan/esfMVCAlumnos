@@ -13,9 +13,34 @@
           <Property Name="nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="apellidos" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="fechaNacimiento" Type="date" />
+          <Property Name="idNacionalidad" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Nacionalidades">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Alumnos_Nacionalidades">
+          <End Role="Nacionalidades" Type="Self.Nacionalidades" Multiplicity="1" />
+          <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nacionalidades">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Alumnos">
+              <PropertyRef Name="idNacionalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="CursosModelStoreContainer">
           <EntitySet Name="Alumnos" EntityType="Self.Alumnos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nacionalidades" EntityType="Self.Nacionalidades" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Alumnos_Nacionalidades" Association="Self.FK_Alumnos_Nacionalidades">
+            <End Role="Nacionalidades" EntitySet="Nacionalidades" />
+            <End Role="Alumnos" EntitySet="Alumnos" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -30,9 +55,36 @@
           <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="apellidos" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="fechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="idNacionalidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Nacionalidades" Relationship="Self.FK_Alumnos_Nacionalidades" FromRole="Alumnos" ToRole="Nacionalidades" />
         </EntityType>
+        <EntityType Name="Nacionalidades">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Alumnos" Relationship="Self.FK_Alumnos_Nacionalidades" FromRole="Nacionalidades" ToRole="Alumnos" />
+        </EntityType>
+        <Association Name="FK_Alumnos_Nacionalidades">
+          <End Role="Nacionalidades" Type="Self.Nacionalidades" Multiplicity="1" />
+          <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nacionalidades">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Alumnos">
+              <PropertyRef Name="idNacionalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="CursosEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Alumnos" EntityType="Self.Alumnos" />
+          <EntitySet Name="Nacionalidades" EntityType="Self.Nacionalidades" />
+          <AssociationSet Name="FK_Alumnos_Nacionalidades" Association="Self.FK_Alumnos_Nacionalidades">
+            <End Role="Nacionalidades" EntitySet="Nacionalidades" />
+            <End Role="Alumnos" EntitySet="Alumnos" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -47,6 +99,15 @@
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="apellidos" ColumnName="apellidos" />
                 <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="idNacionalidad" ColumnName="idNacionalidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nacionalidades">
+            <EntityTypeMapping TypeName="CursosModel.Nacionalidades">
+              <MappingFragment StoreEntitySet="Nacionalidades">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
