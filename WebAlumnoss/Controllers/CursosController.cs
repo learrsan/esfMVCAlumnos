@@ -17,6 +17,18 @@ namespace WebAlumnoss.Controllers
             return View(db.Cursos);
         }
 
+
+        public ActionResult alta()
+        {
+            return View(new Cursos());
+        }
+        [HttpPost]
+        public ActionResult Alta (Cursos model)
+
+        {
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
         base.Dispose(disposing);
