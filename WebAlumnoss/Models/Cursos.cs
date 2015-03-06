@@ -12,20 +12,20 @@ namespace WebAlumnoss.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Alumnos
+    public partial class Cursos
     {
-        public Alumnos()
+        public Cursos()
         {
-            this.Cursos = new HashSet<Cursos>();
+            this.Profesores_Curso = new HashSet<Profesores_Curso>();
+            this.Alumnos = new HashSet<Alumnos>();
         }
     
-        public string dni { get; set; }
+        public int id { get; set; }
         public string nombre { get; set; }
-        public string apellidos { get; set; }
-        public Nullable<System.DateTime> fechaNacimiento { get; set; }
-        public int idNacionalidad { get; set; }
+        public System.DateTime inicio { get; set; }
+        public System.DateTime fin { get; set; }
     
-        public virtual Nacionalidades Nacionalidades { get; set; }
-        public virtual ICollection<Cursos> Cursos { get; set; }
+        public virtual ICollection<Profesores_Curso> Profesores_Curso { get; set; }
+        public virtual ICollection<Alumnos> Alumnos { get; set; }
     }
 }

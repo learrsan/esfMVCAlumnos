@@ -8,6 +8,12 @@
         <EntityTypeShape EntityType="CursosModel.Alumnos" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CursosModel.Nacionalidades" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="CursosModel.FK_Alumnos_Nacionalidades" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CursosModel.Cursos" Width="1.5" PointX="5.5" PointY="0.875" />
+        <EntityTypeShape EntityType="CursosModel.Profesores" Width="1.5" PointX="5.625" PointY="4" />
+        <EntityTypeShape EntityType="CursosModel.Profesores_Curso" Width="1.5" PointX="7.75" PointY="1" />
+        <AssociationConnector Association="CursosModel.FK_Profesores_Curso_Cursos" />
+        <AssociationConnector Association="CursosModel.FK_Profesores_Curso_Profesores" />
+        <AssociationConnector Association="CursosModel.Alumnos_Curso" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
