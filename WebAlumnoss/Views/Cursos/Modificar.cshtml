@@ -1,0 +1,36 @@
+﻿@model WebAlumnoss.Models.Cursos
+
+@{
+    ViewBag.Title = "Modificar";
+}
+
+<h2>Modificar</h2>
+
+@Html.ValidationSummary(false)
+@*Te saca los errores cuando está mal el formulario. Tambien se puede usar @Html.ValidationMessageFor() debajo de cada uno*@
+
+@using (Html.BeginForm())
+{
+   @Html.AntiForgeryToken()
+    //Sirve para evitar que se falseen datos sin pasar por el formulario
+    
+    @Html.HiddenFor(o=>o.id)
+    //Campo oculto que el usuario no ve y lo que hace es asegurarme de que se envia el id
+    
+    
+    @Html.LabelFor(o=>o.nombre)
+    @Html.EditorFor(o=>o.nombre)
+    @*@Html.ValidationMessageFor(o => o.nombre)*@
+    <br/>
+    @Html.LabelFor(o => o.inicio)
+    @Html.EditorFor(o => o.inicio)
+    @*@Html.ValidationMessageFor(o => o.inicio)*@
+    <br />
+    @Html.LabelFor(o => o.fin)
+    @Html.EditorFor(o => o.fin)
+    @*@Html.ValidationMessageFor(o => o.fin)*@
+    <br/>
+    <input type="submit" value="Enviar datos"/>
+}
+
+
