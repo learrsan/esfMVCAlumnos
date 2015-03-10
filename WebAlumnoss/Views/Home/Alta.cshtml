@@ -45,13 +45,27 @@
                 @Html.EditorFor(model => model.fechaNacimiento, new {htmlAttributes = new {@class = "form-control"}})
                 @Html.ValidationMessageFor(model => model.fechaNacimiento, "", new {@class = "text-danger"})
             </div>
-            <div class="form-group">
+            </div>
+            //<div class="form-group">
+              //  @Html.LabelFor(model => model.Nacionalidades, htmlAttributes: new { @class = "control-label col-md-2" })
+                //<div class="col-md-10">
+                  // @Html.EditorFor(model => model.Nacionalidades, new { htmlAttributes = new { @class = "form-control" } })
+                    //@Html.ValidationMessageFor(model => model.fechaNacimiento, "", new { @class = "text-danger" })
+                //</div>
+                <div class="form-group">
                 @Html.LabelFor(model => model.Nacionalidades, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Nacionalidades, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.fechaNacimiento, "", new { @class = "text-danger" })
+                   @Html.DropDownList("idNacionalidad", "-Seleccione nacionalidad-")
+                    @Html.ValidationMessageFor(model => model.idNacionalidad, "", new {@class = "text-danger"})
                 </div>
             </div>
+            <div class="form-group">
+            @Html.LabelFor(model => model.Nacionalidades, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ListBox("idCursos")
+                @Html.ValidationMessageFor(model => model.idNacionalidad, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
