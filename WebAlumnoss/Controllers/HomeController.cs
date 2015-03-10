@@ -51,10 +51,10 @@ namespace WebAlumnoss.Controllers
             if (ModelState.IsValid)
             {
                     db.Alumnos.Add(model);
-                foreach (var idCurso in model.idCursos)
+                foreach (var idCurso in model.Cursos)
                 {
-                    var c = db.Curso.Find(idCurso);
-                    model.Curso.Add(c);
+                    var c = db.Cursos.Find(idCurso);
+                    model.Cursos.Add(c);
                 }
                     db.SaveChanges();
 
