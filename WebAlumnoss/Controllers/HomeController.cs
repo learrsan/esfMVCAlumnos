@@ -10,9 +10,7 @@ namespace WebAlumnoss.Controllers
 {
     public class HomeController : Controller
     {
-
-
-
+        private CursosEntities db = new CursosEntities();
 
 
         // GET: Home
@@ -27,21 +25,40 @@ namespace WebAlumnoss.Controllers
 
         public ActionResult Alta()
         {
+            ViewBag.idNacionalidad = new SelectList(db.Nacionalidades, "id", "nombre");
+            ViewBag.idCursos = new SelectList(db.Cursos, "id", "nombre");
+            
             return View(new Alumnos());
         }
 
         [HttpPost]
 
-    public ActionResult Alta(Alumnos model)
+   // public ActionResult Alta(Alumnos model)
+     //   {
+       //     if (ModelState.IsValid)
+         //   {
+           //     using (var db = new CursosEntities())
+             //   {
+               //     db.Alumnos.Add(model);
+                 //   db.SaveChanges();
+                   // return RedirectToAction("Index");
+                //}
+            //}
+            //return View(model);
+        //}
+        public ActionResult Alta(Alumnos model)
         {
             if (ModelState.IsValid)
             {
-                using (var db = new CursosEntities())
-                {
                     db.Alumnos.Add(model);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                foreach (var idCurso in model.idCursos)
+                {
+                    var c = db.Curso.Find(idCurso);
+                    model.Curso.Add(c);
                 }
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
             }
             return View(model);
         }
