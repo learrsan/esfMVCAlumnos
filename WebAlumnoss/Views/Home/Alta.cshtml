@@ -60,10 +60,10 @@
                 </div>
             </div>
             <div class="form-group">
-            @Html.LabelFor(model => model.Nacionalidades, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Cursos, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.ListBox("idCursos")
-                @Html.ValidationMessageFor(model => model.idNacionalidad, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.IdCursos, "", new { @class = "text-danger" })
             </div>
         </div>
 

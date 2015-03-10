@@ -51,7 +51,7 @@ namespace WebAlumnoss.Controllers
             if (ModelState.IsValid)
             {
                     db.Alumnos.Add(model);
-                foreach (var idCurso in model.Cursos)
+                foreach (var idCurso in model.IdCursos)
                 {
                     var c = db.Cursos.Find(idCurso);
                     model.Cursos.Add(c);
